@@ -1,0 +1,301 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="space-theme-container">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <!-- Admin Info Card -->
+        <div class="choice-card mb-4">
+          <div class="card-header text-center">
+            <h2 class="glow-text">Admin Dashboard</h2>
+            <div class="space-line"></div>
+            <p class="role-text">System Administrator</p>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid mb-4">
+          <div class="stat-card">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <h3>Total Teachers</h3>
+            <p class="stat-number">{{ total_teachers }}</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-user-graduate"></i>
+            <h3>Total Students</h3>
+            <p class="stat-number">{{ total_students }}</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-book"></i>
+            <h3>Total Courses</h3>
+            <p class="stat-number">{{ total_courses }}</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-question-circle"></i>
+            <h3>Total Questions</h3>
+            <p class="stat-number">{{ total_questions }}</p>
+          </div>
+        </div>
+
+        <!-- Main Dashboard Options -->
+        <div class="choice-card">
+          <div class="card-body">
+            <div class="dashboard-options">
+              <!-- Teacher Management -->
+              <div class="dashboard-section">
+                <h3 class="section-title">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                  Teacher Management
+                </h3>
+                <div class="action-grid">
+                  <div class="action-card">
+                    <a href="admin-view-teacher" class="dashboard-link">
+                      <i class="fas fa-list"></i>
+                      <span>View Teachers</span>
+                      <p class="action-description">Manage teacher accounts</p>
+                    </a>
+                  </div>
+                  <div class="action-card">
+                    <a href="admin-salary" class="dashboard-link">
+                      <i class="fas fa-money-bill-wave"></i>
+                      <span>Salary List</span>
+                      <p class="action-description">Manage teacher salaries</p>
+                    </a>
+                  </div>
+                  <div class="action-card">
+                    <a href="admin-pending" class="dashboard-link">
+                      <i class="fas fa-clock"></i>
+                      <span>Pending List</span>
+                      <p class="action-description">View pending approvals</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Student Management -->
+              <div class="dashboard-section">
+                <h3 class="section-title">
+                  <i class="fas fa-user-graduate"></i>
+                  Student Management
+                </h3>
+                <div class="action-grid">
+                  <div class="action-card">
+                    <a href="admin-view-student" class="dashboard-link">
+                      <i class="fas fa-list"></i>
+                      <span>View Students</span>
+                      <p class="action-description">Manage student accounts</p>
+                    </a>
+                  </div>
+                  <div class="action-card">
+                    <a href="admin-student-marks" class="dashboard-link">
+                      <i class="fas fa-chart-bar"></i>
+                      <span>Student Marks</span>
+                      <p class="action-description">View performance reports</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Course Management -->
+              <div class="dashboard-section">
+                <h3 class="section-title">
+                  <i class="fas fa-book"></i>
+                  Course Management
+                </h3>
+                <div class="action-grid">
+                  <div class="action-card">
+                    <a href="admin-course" class="dashboard-link">
+                      <i class="fas fa-list"></i>
+                      <span>View Courses</span>
+                      <p class="action-description">Manage course listings</p>
+                    </a>
+                  </div>
+                  <div class="action-card">
+                    <a href="admin-question" class="dashboard-link">
+                      <i class="fas fa-question-circle"></i>
+                      <span>Question Bank</span>
+                      <p class="action-description">Manage exam questions</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.space-theme-container {
+  position: relative;
+  min-height: 100vh;
+  background: var(--space-gradient);
+  padding: 2rem 0;
+}
+
+.choice-card {
+  background: rgba(13, 17, 38, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.glow-text {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: glow 2s ease-in-out infinite;
+}
+
+.role-text {
+  color: var(--accent);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.space-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 1rem auto;
+  width: 80%;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: rgba(123, 44, 243, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(123, 44, 243, 0.2);
+}
+
+.stat-card i {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.stat-card h3 {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-number {
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.dashboard-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.dashboard-section {
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.section-title {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-title i {
+  color: var(--accent);
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.action-card {
+  background: rgba(123, 44, 243, 0.1);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(123, 44, 243, 0.2);
+}
+
+.dashboard-link {
+  text-decoration: none;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashboard-link i {
+  font-size: 2rem;
+  color: var(--accent);
+}
+
+.dashboard-link span {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.action-description {
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .glow-text {
+    font-size: 2rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+{% endblock content %} 

@@ -1,0 +1,222 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="login-container">
+  <div class="login-card">
+    <div class="card-header">
+      <h2 class="glow-text">Admin Login</h2>
+      <div class="space-line"></div>
+    </div>
+    
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group-wrapper">
+        <div class="form-group">
+          <div class="floating-label">
+            <input type="text" name="username" class="form-control" placeholder=" " required>
+            <label>Username</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="floating-label">
+            <input type="password" name="password" class="form-control" placeholder=" " required>
+            <label>Password</label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span>Login</span>
+        <div class="particles"></div>
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--space-gradient);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  background: url('{% static "images/stars.png" %}') repeat;
+  animation: float-background 100s linear infinite;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.login-card {
+  background: rgba(13, 17, 38, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: fadeInUp 0.8s ease;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.glow-text {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--text-primary);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  animation: glow 2s ease-in-out infinite;
+}
+
+.space-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 1rem auto;
+  width: 80%;
+}
+
+.form-group-wrapper {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 0.5rem;
+  animation: slideIn 0.5s ease backwards;
+}
+
+.floating-label {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.floating-label label {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  padding: 0 0.5rem;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  font-size: 0.9rem;
+}
+
+.floating-label .form-control:focus ~ label,
+.floating-label .form-control:not(:placeholder-shown) ~ label {
+  top: 0;
+  transform: translateY(-50%) scale(0.9);
+  background: var(--card-bg);
+  color: var(--accent);
+}
+
+.form-control {
+  width: 100%;
+  padding: 1rem 1rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(45deg, var(--accent), var(--primary));
+  border: none;
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--accent-glow);
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: rotate(45deg);
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px var(--accent-glow); }
+  50% { text-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  50% { transform: translateX(100%) rotate(45deg); }
+  100% { transform: translateX(-100%) rotate(45deg); }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1rem;
+  }
+  
+  .login-card {
+    padding: 1.5rem;
+  }
+  
+  .glow-text {
+    font-size: 1.5rem;
+  }
+}
+</style>
+
+{% endblock content %}

@@ -1,0 +1,233 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="space-theme-container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-6">
+        <div class="choice-card">
+          <div class="card-header text-center">
+            <h2 class="glow-text mb-4">Admin Portal</h2>
+            <div class="space-line"></div>
+            <p class="feature-text">System Management Dashboard</p>
+          </div>
+          <div class="card-body">
+            <div class="features-list mb-4">
+              <div class="feature-item">
+                <i class="fas fa-users-cog"></i>
+                <span>User Management</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Access Control</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-tasks"></i>
+                <span>Quiz Oversight</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-clock"></i>
+                <span>Deadline Management</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-tools"></i>
+                <span>System Configuration</span>
+              </div>
+            </div>
+            <div class="vertical-options">
+              <div class="option-card hover-lift">
+                <a href="adminlogin" class="card-link">
+                  <div class="option-content">
+                    <i class="fas fa-user-shield fa-3x mb-3"></i>
+                    <h3>Admin Login</h3>
+                    <p>Access the administrative control panel</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.space-theme-container {
+  position: relative;
+  min-height: 100vh;
+  background: var(--space-gradient);
+  overflow: hidden;
+}
+
+.space-theme-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+  z-index: 1;
+}
+
+.space-theme-container::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  background: url('{% static "images/stars.png" %}') repeat;
+  animation: float-background 100s linear infinite;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.choice-card {
+  background: rgba(13, 17, 38, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: fadeInUp 0.8s ease;
+}
+
+.vertical-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.glow-text {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: glow 2s ease-in-out infinite;
+}
+
+.feature-text {
+  color: var(--accent);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.space-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 1rem auto;
+  width: 80%;
+}
+
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.features-list .feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.features-list .feature-item:hover {
+  background: rgba(123, 44, 243, 0.1);
+  color: var(--text-primary);
+}
+
+.features-list .feature-item i {
+  color: var(--accent);
+}
+
+.option-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(123, 44, 243, 0.2);
+  border-color: var(--accent);
+  background: rgba(123, 44, 243, 0.1);
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.option-content i {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.option-content h3 {
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.option-content p {
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px var(--accent-glow); }
+  50% { text-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+}
+
+@media (max-width: 768px) {
+  .choice-card {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .glow-text {
+    font-size: 2rem;
+  }
+  
+  .option-card {
+    padding: 1.5rem;
+  }
+
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-text {
+    font-size: 1rem;
+  }
+}
+</style>
+
+{% endblock content %} 

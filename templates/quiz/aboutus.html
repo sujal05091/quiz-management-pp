@@ -1,0 +1,202 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="space-theme-container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-8">
+        <div class="choice-card">
+          <div class="card-header text-center">
+            <h2 class="glow-text mb-4">TEAM OG HERE</h2>
+            <div class="space-line"></div>
+          </div>
+          <div class="card-body">
+            <div class="about-content">
+              <div class="section mb-5">
+                <h3 class="section-title">Our Mission</h3>
+                <p>We are dedicated to revolutionizing online education through our innovative quiz platform. Our mission is to provide an engaging, interactive learning experience that makes education both fun and effective.</p>
+              </div>
+              
+              <div class="section mb-5">
+                <h3 class="section-title">TEAM OG OFFERS</h3>
+                <div class="features-grid">
+                  <div class="feature-item">
+                    <i class="fas fa-graduation-cap fa-2x mb-3"></i>
+                    <h4>Interactive Learning</h4>
+                    <p>Engaging quizzes designed to enhance understanding</p>
+                  </div>
+                  <div class="feature-item">
+                    <i class="fas fa-chart-line fa-2x mb-3"></i>
+                    <h4>Progress Tracking</h4>
+                    <p>Monitor your learning journey with detailed analytics</p>
+                  </div>
+                  <div class="feature-item">
+                    <i class="fas fa-users fa-2x mb-3"></i>
+                    <h4>Community</h4>
+                    <p>Connect with teachers and fellow students</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="section">
+                <h3 class="section-title">Our members</h3>
+                <p> 1.SUJAL S KUMAR </p>
+                 <p> 2.ANJAN N SHETTY </p>
+                  <P>3.AVISH KUMAR</P>
+                  <P>4.SRAJAN ACHARYA</P>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.space-theme-container {
+  position: relative;
+  min-height: 100vh;
+  background: var(--space-gradient);
+  overflow: hidden;
+}
+
+.space-theme-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+  z-index: 1;
+}
+
+.space-theme-container::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  background: url('{% static "images/stars.png" %}') repeat;
+  animation: float-background 100s linear infinite;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.choice-card {
+  background: rgba(13, 17, 38, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: fadeInUp 0.8s ease;
+}
+
+.glow-text {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: glow 2s ease-in-out infinite;
+}
+
+.space-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 1rem auto;
+  width: 80%;
+}
+
+.about-content {
+  color: var(--text-primary);
+}
+
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.feature-item {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  background: rgba(123, 44, 243, 0.1);
+}
+
+.feature-item i {
+  color: var(--accent);
+  animation: float 3s ease-in-out infinite;
+}
+
+.feature-item h4 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--text-primary);
+  margin: 1rem 0;
+}
+
+.feature-item p {
+  color: var(--text-secondary);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px var(--accent-glow); }
+  50% { text-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+}
+
+@media (max-width: 768px) {
+  .choice-card {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .glow-text {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+</style>
+
+{% endblock content %}
